@@ -1671,10 +1671,18 @@
             return;
           }
           sb.classList.add("send");
+          fetch("/api/rsvp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: v,
+              coming: yes,
+              wish: ms.value.trim(),
+            }),
+          }).catch(function () {});
           setTimeout(function () {
-            document.getElementById("ty").textContent = console.log(
-              (yes ? "Rahmat, " : "Xabaringiz uchun rahmat, ") + v + "!",
-            );
+            document.getElementById("ty").textContent =
+              (yes ? "Rahmat, " : "Xabaringiz uchun rahmat, ") + v + "!";
             document.getElementById("ty2").textContent = yes
               ? "Sizni katta quvonch bilan kutib qolamiz. Koʻrishguncha!"
               : "Kela olmasangiz ham, duolaringiz biz uchun aziz.";
